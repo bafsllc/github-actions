@@ -35,12 +35,12 @@ jobs:
       # Find an "qa words"
       - name: qa-words action step
         id: qa-words
-        needs: install
+        needs: [install]
         uses: ./action-qa-words # Uses an action in the root directory
       # Use the output from the `qa-words action step` step
       - name: move issues to the QA pipeline
         id: qa-pipeline
-        needs: qa-words
+        needs: [qa-words]
         uses: ./action-qa-pipeline # Uses an action in the root directory
         with:
           issueIds: ${{ steps.qa-words.outputs.issueIds }}
