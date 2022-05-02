@@ -1,0 +1,13 @@
+name: "QA Words"
+description: 'Does PR description contain "qa" words (like "closing" words).'
+# inputs:
+#   who-to-greet: # id of input
+#     description: "Who to greet"
+#     required: true
+#     default: "World"
+outputs:
+  issueIds: # CSV of qa issues.
+    description: "The issue to move to the QA pipeline."
+runs:
+  using: "node16"
+  main: "index.js"

@@ -1,0 +1,30 @@
+on:
+  pull_request:
+    branches:
+      - master
+      - main
+    types: ["closed"]
+jobs:
+  qa-pipeline-job:
+    runs-on: ubuntu-latest
+    steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: checkout
+        uses: actions/checkout@v3
+      # Cache dependencies
+      - name: cache
+        uses: actions/setup-node@v3
+        with:
+          cache: "yarn"
+        run: yarn install
+      # Find an "qa words"
+      - name: qa-words action step
+        id: qa-words
+        uses: ./action-qa-words # Uses an action in the root directory
+      # Use the output from the `qa-words action step` step
+      - name: move issues to the QA pipeline
+        id: qa-pipeline
+        uses: ./action-qa-pipeline # Uses an action in the root directory
+        with:
+          issueIds: ${{steps.qa-words.outputs.issueIds}}

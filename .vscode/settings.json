@@ -1,0 +1,13 @@
+{
+  "CleanCSS.options": {
+  "level": 2
+},
+"cSpell.words": [
+  "BAFS",
+  "bafsllc",
+  "Zenhub"
+],
+"editor.defaultFormatter": "esbenp.prettier-vscode",
+"eslint.packageManager": "yarn",
+"prettier.configPath": ".prettierrc"
+}

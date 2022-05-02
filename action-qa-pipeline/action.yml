@@ -1,0 +1,13 @@
+name: "QA Pipeline"
+description: "Move issues to the QA pipeline in Zenhub."
+inputs:
+  issueIds: # CSV of qa issues.
+    description: "CSV of qa issues"
+    required: true
+    default: ""
+outputs:
+  issueIds: # CSV of qa issues.
+    description: "The issues moved to the QA pipeline."
+runs:
+  using: "node16"
+  main: "index.js"
