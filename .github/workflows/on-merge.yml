@@ -27,11 +27,15 @@ jobs:
         uses: actions/setup-node@v3
         with:
           cache: "yarn"
+      # Install dependencies
+      - name: install
+        id: install
+        needs: [checkout, cache]
         run: yarn install
       # Find an "qa words"
       - name: qa-words action step
         id: qa-words
-        needs: [checkout, cache]
+        needs: install
         uses: ./action-qa-words # Uses an action in the root directory
       # Use the output from the `qa-words action step` step
       - name: move issues to the QA pipeline
