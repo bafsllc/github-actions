@@ -18,6 +18,24 @@ function cleanIssueNumber(issueNumber) {
 }
 
 async function main() {
+  const pipelineId = core.getInput("pipelineId");
+  if (!pipelineId) {
+    core.setFailed("Missing 'pipelineId'.");
+    return;
+  }
+
+  const workspaceId = core.getInput("workspaceId");
+  if (!workspaceId) {
+    core.setFailed("Missing 'workspaceId'.");
+    return;
+  }
+
+  const zenhubToken = core.getInput("zenhubToken");
+  if (!zenhubToken) {
+    core.setFailed("Missing 'zenhubToken'.");
+    return;
+  }
+
   try {
     // core.info(`context=\n${JSON.stringify(context, null, 2)}`);
 
@@ -35,13 +53,11 @@ async function main() {
     }
 
     const repoId = context.payload.repository?.id;
-    const engineeringWorkspaceId = "60997aff441f2f0011219bc1";
-    const qaPipelineId = "Z2lkOi8vcmFwdG9yL1BpcGVsaW5lLzI2ODAzMTE";
 
     await Promise.all(
       issueNumbers.map(async issueNumber => {
         const url = new URL("https://api.zenhub.com");
-        url.pathname = `/p2/workspaces/${engineeringWorkspaceId}/repositories/${repoId}/issues/${cleanIssueNumber(
+        url.pathname = `/p2/workspaces/${workspaceId}/repositories/${repoId}/issues/${cleanIssueNumber(
           issueNumber
         )}/moves`;
 
@@ -49,13 +65,12 @@ async function main() {
 
         const init = {
           body: JSON.stringify({
-            pipeline_id: qaPipelineId,
+            pipeline_id: pipelineId,
             position: "bottom"
           }),
           headers: {
             "Content-Type": "application/json",
-            "X-Authentication-Token":
-              "85e7967f659573178f3d7cf6bdf6d51a3e723eb03447321d431c1d150fbd491d0eaeb00014ba73ed"
+            "X-Authentication-Token": zenhubToken
           },
           method: "POST"
         };

@@ -10,7 +10,7 @@ function main() {
         pull_request: { body }
       }
     } = context;
-    core.info(`body='${body}'`);
+    // core.info(`body='${body}'`);
 
     // Is there a QA word related to the issue #?
     // example: "qa #1234"

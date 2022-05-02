@@ -5,6 +5,18 @@ inputs:
     description: "CSV of qa issues"
     required: true
     default: ""
+  pipelineId: # ID of the target Zenhub pipeline.
+    description: "ID of the target Zenhub pipeline"
+    required: true
+    default: ""
+  workspaceId: # ID of the Zenhub workspace.
+    description: "ID of the Zenhub workspace"
+    required: true
+    default: ""
+  zenhubToken:
+    description: "The zenhub token created in the zenhub dashboard."
+    required: true
+    default: ""
 outputs:
   issueIds: # CSV of qa issues.
     description: "The issues moved to the QA pipeline."
