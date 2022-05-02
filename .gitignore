@@ -5,7 +5,7 @@
 /tmp
 
 # dependencies
-node_modules
+# node_modules # Github actions don't d an install step so the node_modules must be committed.
 
 # IDEs and editors
 /.idea
