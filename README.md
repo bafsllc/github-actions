@@ -22,8 +22,8 @@ pipeline.
 
 To use the on-merge workflow in a repository do the following.
 
-1. Add an entry to the repository's secrets with the name `ZENHUB_TOKEN` and the
-value of the Zenhub API token (see Rich for the current token).
+1. Add an entry to the repository's Action secrets with the name `ZENHUB_TOKEN`
+and the value of the Zenhub API token (see Rich for the current token).
 1. Add a file to the repository with the following path
    `/.github/workflows/on-merge.yml` with the contents below:
 
