@@ -24,11 +24,11 @@ jobs:
       # Find an "qa words"
       - name: qa-words action step
         id: qa-words
-        uses: ./action-qa-words # Uses an action in the root directory
+        uses: bafsllc/github-actions/action-qa-words@v1 # Uses an action in the root directory
       # Use the output from the `qa-words action step` step
       - name: move issues to the QA pipeline
         id: qa-pipeline
-        uses: ./action-qa-pipeline # Uses an action in the root directory
+        uses: bafsllc/github-actions/action-qa-pipeline@v1 # Uses an action in the root directory
         with:
           issueIds: ${{ steps.qa-words.outputs.issueIds }}
           pipelineId: ${{ inputs.pipelineId }}
